@@ -38,8 +38,15 @@ jobs:
 
       - name: Setup workspace
         run: |
+
+          git config --global user.email "ci@zephyrproject.org"
+          git config --global user.name "Joe Developer"
           west init -l .
           west update
+
+          pushd ../zephyr
+          git am ../safety-doc/patches/*patch
+          popd
 
       - name: install-pkgs
         run: |
