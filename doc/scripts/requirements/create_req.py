@@ -5,6 +5,7 @@
 import sys
 import argparse
 import json
+import textwrap
 
 
 HEADER = """
@@ -74,6 +75,21 @@ def write_dox(grouped, output="requirements.dox"):
 
         req.write(FOOTER)
 
+def wrap_text(text, width=80):
+    indentation = "    "  # 4 spaces indentation
+
+    # Split paragraphs by double newline
+    paragraphs = text.strip().split('\n\n')
+
+    # Wrap each paragraph individually, then join them with a double newline
+    wrapped_paragraphs = [
+        textwrap.fill(p, width=width, initial_indent=indentation, subsequent_indent=indentation)
+        for p in paragraphs
+    ]
+
+    result = '\n\n'.join(wrapped_paragraphs)
+    return result
+
 def write_rst(grouped, output="requirements.rst"):
     with open(output, "w") as req:
         req.write(RST_HEADER)
@@ -89,7 +105,8 @@ def write_rst(grouped, output="requirements.rst"):
             for req_item in requirements:
                 req.write(f".. item:: {req_item['rid']} {req_item['name']}\n")
                 req.write(f"    :status: not reviewed\n\n")
-                req.write(f"    {req_item['req']}\n\n")
+                req_text= wrap_text(req_item['req'], 80)
+                req.write(f"{req_text}\n\n")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create requirements document', allow_abbrev=False)
