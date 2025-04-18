@@ -117,13 +117,13 @@ html_baseurl = "https://docs.zephyrproject.org/latest/"
 html_title = "Zephyr Project Documentation"
 html_logo = str(ZEPHYR_BASE / "doc" / "_static" / "images" / "logo.svg")
 html_favicon = str(ZEPHYR_BASE / "doc" / "_static" / "images" / "favicon.png")
-html_static_path = [str(ZEPHYR_BASE / "doc" / "_static")]
+html_static_path = [str(DOC_BASE / "doc" / "_static")]
 html_last_updated_fmt = "%b %d, %Y"
 html_domain_indices = False
 html_split_index = True
 html_show_sourcelink = False
 html_show_sphinx = False
-html_search_scorer = str(ZEPHYR_BASE / "doc" / "_static" / "js" / "scorer.js")
+html_search_scorer = str(DOC_BASE / "doc" / "_static" / "js" / "scorer.js")
 html_static_path = ['_static']
 
 def setup(app):
@@ -144,7 +144,7 @@ doxyrunner_projects = {
         "fmt_vars": {
             "ZEPHYR_BASE": str(ZEPHYR_BASE),
             "ZEPHYR_VERSION": version,
-            "DOC_BASE": str(DOC_BASE)
+            "DOC_BASE": str(DOC_BASE) + '/doc', 
         },
         "outdir_var": "DOXY_OUT",
     },
