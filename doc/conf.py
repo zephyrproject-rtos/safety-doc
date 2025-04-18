@@ -22,8 +22,8 @@ ZEPHYR_BUILD = Path(os.environ.get("OUTPUT_DIR")).resolve()
 sys.path.insert(0, str(ZEPHYR_BASE / "doc" / "_extensions"))
 
 project = 'Zephyr'
-copyright = '2025, Anas Nashif'
-author = 'Anas Nashif'
+copyright = '2025, Zephyr Project Contributors'
+author = 'Zephyr Project Contributors'
 release = '1.0'
 
 
