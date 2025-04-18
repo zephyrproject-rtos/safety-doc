@@ -7,7 +7,7 @@ manifest:
     - name: zephyr
       remote: zephyrproject-rtos
       path: zephyr
-      revision: main
+      revision: pull/88793/head
       import:
         name-allowlist:
           - cmsis      # required by the ARM port
