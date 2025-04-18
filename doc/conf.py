@@ -181,16 +181,28 @@ traceability_relationship_to_string = {
     'ext_toolname': 'Reference to toolname'
 }
 
+traceability_attribute_to_string = {
+    'rtype': 'Requirement type',
+    'value': 'Value',
+    'asil': 'ASIL',
+    'status': 'Status',
+    'uid': 'UID',
+    'component': 'Component',
+}
+
 traceability_attributes = {
     'value': '^.*$',
     'asil': '^(QM|[ABCD])$',
     'status': '^.*$',
+    'uid': '^.*$',
+    'component': '^.*$',
+    'rtype': '^(Functional|Non-Functional)$'
 }
 
 traceability_collapse_links = False
 
 traceability_render_relationship_per_item = True
-traceability_render_attributes_per_item = False
+traceability_render_attributes_per_item = True
 
 
 suppress_warnings = ["config.cache"]

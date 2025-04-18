@@ -40,16 +40,26 @@ def parse_nodes(nodes, grouped):
         elif n['TYPE'] in ['SECTION'] :
             grouped = parse_nodes(n['NODES'], grouped)
         else:
-            rid = n.get('UID')
-            name = n['TITLE']
-            text= n['STATEMENT']
-            group = n.get('COMPONENT', None)
-            if not group:
-                debug("No group for {}".format(rid))
+            uid = n.get('UID')
+            title = n['TITLE']
+            statement= n['STATEMENT']
+            status = n.get('STATUS', None)
+            component = n.get('COMPONENT', None)
+            rtype = n.get('TYPE', None)
+            if not component:
+                debug("No group for {}".format(uid))
                 continue
-            if not grouped.get(group, None):
-                grouped[group] = []
-            grouped[group].append({'rid': rid, 'req': text, 'name': name })
+            if not grouped.get(component, None):
+                grouped[component] = []
+            grouped[component].append(
+                {'uid': uid, 
+                 'statement': statement, 
+                 'title': title,
+                 'status': status,
+                 'component': component,
+                 'type': rtype
+                 }
+                 )
 
     return grouped
 
@@ -71,7 +81,7 @@ def write_dox(grouped, output="requirements.dox"):
             counter += 1
             req.write(f"\n@section REQSEC{counter} {r}\n\n")
             for c in comp:
-                req.write("@subsection {} {}: {}\n{}\n\n\n".format(c['rid'], c['rid'], c['name'], c['req']))
+                req.write("@subsection {} {}: {}\n{}\n\n\n".format(c['uid'], c['uid'], c['title'], c['statement']))
 
         req.write(FOOTER)
 
@@ -103,9 +113,12 @@ def write_rst(grouped, output="requirements.rst"):
             
             # Write each requirement in the group
             for req_item in requirements:
-                req.write(f".. item:: {req_item['rid']} {req_item['name']}\n")
-                req.write(f"    :status: not reviewed\n\n")
-                req_text= wrap_text(req_item['req'], 80)
+                req.write(f".. item:: {req_item['uid']} {req_item['title']}\n")
+                req.write(f"    :status: {req_item['status']}\n")
+                req.write(f"    :rtype: {req_item['type']}\n")
+                req.write(f"    :uid: {req_item['uid']}\n")
+                req.write(f"    :component: {req_item['component']}\n\n")
+                req_text= wrap_text(req_item['statement'], 80)
                 req.write(f"{req_text}\n\n")
 
 if __name__ == "__main__":
