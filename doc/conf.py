@@ -162,12 +162,15 @@ traceability_relationships = {
     'fulfills': 'fulfilled_by',
     'implements': 'implemented_by',
     'validates': 'validated_by',
+    'parent': 'child',
     'ext_toolname': ''
 }
 
 traceability_render_relationship_per_item = True
 
 traceability_relationship_to_string = {
+    'parent': 'Parent',
+    'child': 'Children',
     'trace': 'Traces',
     'traced_by': 'Traced by',
     'depends_on': 'Depends on',

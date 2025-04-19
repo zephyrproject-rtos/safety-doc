@@ -72,8 +72,8 @@ jobs:
           strictdoc export . --formats json
           popd
           pushd doc
-          python ./scripts/requirements/create_req.py --json ../../doc/reqmgmt/output/json/index.json --output requirements.rst --format  rst
-          python ./scripts/requirements/create_req.py --json ../../doc/reqmgmt/output/json/index.json --output requirements.dox --format  dox
+          python ./scripts/requirements/create_req.py --json ../../doc/reqmgmt/output/json/index.json --format  rst
+          python ./scripts/requirements/create_req.py --json ../../doc/reqmgmt/output/json/index.json --format  dox
           make html
           python scripts/list_all_tests.py --input _build/html/doxygen/xml/group__all__tests.xml --xml-dir _build/html/doxygen/xml --output-dir tests
           make html
