@@ -980,6 +980,7 @@ INPUT                  = @ZEPHYR_BASE@/doc/_doxygen/mainpage.md \
                          @ZEPHYR_BASE@/subsys/testsuite/include/ \
                          @ZEPHYR_BASE@/subsys/testsuite/ztest/include/ \
                          @ZEPHYR_BASE@/subsys/secure_storage/include/ \
+                         @ZEPHYR_BASE@/tests/tests.dox \
 			 @ZEPHYR_BASE@/tests/kernel \
 			 @ZEPHYR_BASE@/tests/arch \
 			 @DOC_BASE@/zephyr_software_requirements.dox \

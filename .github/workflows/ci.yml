@@ -44,9 +44,9 @@ jobs:
           west init -l .
           west update
 
-          pushd ../zephyr
-          git am ../safety-doc/patches/*patch
-          popd
+          #pushd ../zephyr
+          #git am ../safety-doc/patches/*patch
+          #popd
 
       - name: install-pkgs
         run: |
